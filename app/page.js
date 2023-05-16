@@ -1,9 +1,7 @@
 "use client";
 
-import HeroBanner from '../../component/HeroBanner/HeroBanner';
-import AboutUs from '../../component/AboutUs/AboutUs';
-import styles from'./page.module.css';
-import Image from 'next/image';
+import HeroBanner from '../component/HeroBanner/HeroBanner';
+import AboutUs from '../component/AboutUs/AboutUs';
 
 export default function Page() {
 
