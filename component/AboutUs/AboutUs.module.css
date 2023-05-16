@@ -11,7 +11,14 @@
     line-height: 1.4;
 }
 
+.aboutUsImage{
+    width: 50%;
+    height: auto;
 
+    max-width: 45%;
+    display: block;
+    object-fit: contain;
+}
 
 .aboutUsText {
     width: 40%;
@@ -20,7 +27,6 @@
 }
 
 .aboutUsImage {
-    width: 45%;
 }
 
 
@@ -31,6 +37,7 @@
     
     .aboutUsImage {
         width: 100%;
+        max-width: 100%;
     }
     
 }

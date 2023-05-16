@@ -1,7 +1,7 @@
 import EditableText from "../EditableText/EditableText";
 import styles from './HeroBannder.module.css';
 
-function HeroBanner({ children }){
+function HeroBanner(){
     return (        
         <div className={styles.heroContainer}>
             <div class="content-container">
