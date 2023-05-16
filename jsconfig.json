@@ -1,0 +1,4 @@
+{
+   "include": ["component"],
+   "exclude": ["node_modules", ".next"]
+ }

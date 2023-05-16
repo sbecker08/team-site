@@ -1,0 +1,36 @@
+.aboutUsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.title {
+    color: #002855;
+    font-size: 2rem;
+
+    line-height: 1.4;
+}
+
+
+
+.aboutUsText {
+    width: 40%;
+
+    margin-bottom: 50px;
+}
+
+.aboutUsImage {
+    width: 45%;
+}
+
+
+@media (max-width: 1200px) {
+    .aboutUsText {
+        width: 100%;
+    }
+    
+    .aboutUsImage {
+        width: 100%;
+    }
+    
+}
