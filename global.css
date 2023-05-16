@@ -41,6 +41,8 @@ button.orange-button {
 
     padding: 12px 22px;
     border: 0px;
+    
+    cursor: pointer;
 }
 
 @media (max-width: 1200px) {

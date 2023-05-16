@@ -2,11 +2,9 @@
 
 import HeroBanner from '../component/HeroBanner/HeroBanner';
 import AboutUs from '../component/AboutUs/AboutUs';
+import PublishBar from '../component/PublishBar/PublishBar';
 
 export default function Page() {
-
-  var textToShow = "This is the text to show";
-  var moreTextToShow = "This is more text to edit";
 
   const onTextChange = (e) => {
     console.log("parent text change");
@@ -16,6 +14,8 @@ export default function Page() {
       <div>
         <HeroBanner></HeroBanner>
         <AboutUs></AboutUs>
+        
+        <PublishBar></PublishBar>
       </div>
     );
   }

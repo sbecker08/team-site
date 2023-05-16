@@ -1,0 +1,17 @@
+.publishContainer {
+    position: fixed;
+    bottom: 0;
+
+    width: 100%;
+
+    background-color: white;
+
+    box-shadow: 0 0px 5px #666;
+
+    padding: 20px 40px;
+
+}
+
+.publishContainer > button {
+    float: right;
+}

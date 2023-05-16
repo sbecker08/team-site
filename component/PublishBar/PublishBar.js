@@ -1,4 +1,5 @@
 import React, { useEffect, useState, setState } from "react"
+import styles from "./PublishBar.module.css";
 
 function EditableText({ onTextChange, text }){
 
@@ -12,12 +13,17 @@ function EditableText({ onTextChange, text }){
             setContentEditable(true);
     });
 
-    const handleBlur = (e) => {
-        onTextChange ? onTextChange(e.target.textContent) : true;
+    const handleClick = (e) => {
+        console.log("click");
     };
 
     return (
-        <span contentEditable={isContentEditable} suppressContentEditableWarning={true} onBlur={handleBlur} >{text}</span>
+        isContentEditable ?
+        <div className={styles.publishContainer}> 
+            <button class="orange-button" onClick={handleClick} >Publish</button>
+        </div> 
+        :
+        <></>
     )
 }
 
