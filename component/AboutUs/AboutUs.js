@@ -1,6 +1,6 @@
 import EditableText from "../EditableText/EditableText";
+import EditableImage from "../EditableImage/EditableImage";
 import styles from './AboutUs.module.css';
-import Image from 'next/image'
 
 function HeroBanner(){
 
@@ -18,7 +18,9 @@ function HeroBanner(){
                         </h2>                        
                         <EditableText onTextChange={handleTextChange} text="In order to best serve our clients, we provide a truly holistic approach to their investment needs. We advise and assist them in executing their respective business plans, and help them overcome obstacles they run into along the way. Due to our state of the art research and analytical capabilities"></EditableText>
                     </div>
-                    <Image alt="Team Picture" className={styles.aboutUsImage} src="/team.webp" width="1184" height="880"></Image>
+                    <div className={styles.aboutUsImageContainer}>
+                        <EditableImage src="/team.webp" width="1184" height="880"></EditableImage>
+                    </div>
                 </div>
             </div>
         </div>
