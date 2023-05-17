@@ -20,7 +20,7 @@ function EditableText({ onTextChange, text }){
     return (
         isContentEditable ?
         <div className={styles.publishContainer}> 
-            <button class="orange-button" onClick={handleClick} >Publish</button>
+            <button class="orange-button" onClick={handleClick} >Submit for Approval</button>
         </div> 
         :
         <></>
