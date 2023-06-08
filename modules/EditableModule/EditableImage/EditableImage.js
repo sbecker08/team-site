@@ -1,27 +1,20 @@
 import Image from 'next/image'
-import React, { useEffect, useState } from "react"
+import React, { useState, useContext } from "react"
 import styles from "./EditableImage.module.css"
+import { EditableZoneContext } from '../EditableZone';
 
-function EditableImage({ src, width, height }){
+function EditableImage({ isContentEditable, src, width, height }){
 
-    var [isContentEditable, setContentEditable] = useState(false);
+    const editableZoneContext = useContext(EditableZoneContext);
+
     var [imageSrc, setImageSrc] = useState(src);
 
-    useEffect(() => {
-        const queryParameters = new URLSearchParams(window.location.search);
-        const editMode = queryParameters.get("editMode");
-
-        if(editMode === "true")
-            setContentEditable(true);
-    });
-
     const preview = (e) => {
-        console.log(e);
         setImageSrc(window.URL.createObjectURL(e.target.files[0]));
     }
 
     return (
-        isContentEditable ?
+        editableZoneContext.isEditable ?
         <>
             <Image alt="Team Picture" className={styles.aboutUsImage} src={imageSrc} width={width} height={height}></Image>            
             <div className={styles.imageOverlay}>

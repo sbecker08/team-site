@@ -1,14 +1,14 @@
-import EditableText from "../EditableText/EditableText";
+import EditableText from "../../modules/EditableModule/EditableText/EditableText";
 import styles from './HeroBannder.module.css';
 
-function HeroBanner(){
+function HeroBanner({ headline, buttonText, isContentEditable = true }){
     return (        
         <div className={styles.heroContainer}>
-            <div class="content-container">
+            <div className="content-container">
                 <h1 className={styles.bannerText}>
-                    <EditableText text="We Go Beyond Just Brokerage, Creating a Hassle-free and Enjoyable Experience."></EditableText>
+                    <EditableText isContentEditable={isContentEditable} text={headline}></EditableText>
                 </h1>
-                <button class="orange-button">Learn More</button>
+                <button className="orange-button">{buttonText}</button>
             </div>
         </div>
     )

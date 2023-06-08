@@ -1,4 +1,4 @@
 {
-   "include": ["component"],
+   "include": ["component", "modules/EditableModule/EditableImage"],
    "exclude": ["node_modules", ".next"]
  }

@@ -19,6 +19,14 @@
     max-width: 45%;
 }
 
+.odd {
+    background-color: #eee;
+}
+
+.even {
+    background-color: white;
+}
+
 .aboutUsText {
     width: 40%;
 

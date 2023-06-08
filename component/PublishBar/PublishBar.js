@@ -1,7 +1,7 @@
 import React, { useEffect, useState, setState } from "react"
 import styles from "./PublishBar.module.css";
 
-function EditableText({ onTextChange, text }){
+function PublishBar({ onTextChange, text }){
 
     var [isContentEditable, setContentEditable] = useState(false);
 
@@ -20,12 +20,12 @@ function EditableText({ onTextChange, text }){
     return (
         isContentEditable ?
         <div className={styles.publishContainer}> 
-            <button class="orange-button" onClick={handleClick} >Submit for Approval</button>
+            <button className="orange-button" onClick={handleClick} >Submit for Approval</button>
         </div> 
         :
         <></>
     )
 }
 
-export default EditableText;
+export default PublishBar;
   

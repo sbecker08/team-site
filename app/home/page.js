@@ -15,9 +15,37 @@ export default function Page() {
   }
 
     return (
-      <div>
-        <HeroBanner></HeroBanner>
-        <AboutUs></AboutUs>
-      </div>
+      <Query
+        contentType="Page"
+        query={{
+          'fields.slug[in]': `/${props.match.slug || ''}`,
+        }}
+      >
+        {({data, error, fetched, loading}) => {
+      if (loading || !fetched) {
+        return <p>Loading...</p>;
+      }
+
+      if (error) {
+        console.error(error);
+        return <p>Error</p>;
+      }
+
+      if (!data) {
+        return <p>Page does not exist.</p>;
+      }
+
+      // See the Contentful query response
+      console.debug(data);
+
+      // Process and pass in the loaded `data` necessary for your page or child components.
+      return (
+        <div>
+            <HeroBanner></HeroBanner>
+          </div>
+      );
+      }}
+          
+      </Query>
     );
   }
