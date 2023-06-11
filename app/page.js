@@ -75,7 +75,6 @@ export default function Page({ props }) {
             return (
               <div>        
                   <HeroBanner isContentEditable={false} headline={data.fields.headline} buttonText={data.fields.subtitle} ></HeroBanner>
-                  <button onClick={toggleData}>Don't Click Me Bro</button>
                   {
                     /*editableZoneContext.isEditable ? 
                     (
@@ -95,6 +94,9 @@ export default function Page({ props }) {
                           data.fields.components.map((c, index) => {
                             if(c.sys.contentType.sys.id == 'aboutUsComponent'){
                               return <AboutUs isOddStyle={index % 2} contentChanged={onAboutUsChanged} key={c.sys.id} contentId={c.sys.id} title={c.fields.title} aboutUs={c.fields.aboutUs} ></AboutUs>
+                            } 
+                            else if(c.sys.contentType.sys.id == 'researchComponent'){
+                              
                             }
                           })
                         }

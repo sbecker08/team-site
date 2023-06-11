@@ -1,9 +1,18 @@
 .heroContainer {
-    background: url('../../public/hero.webp');
+    position: relative;
 
     color: white;
 
     padding: 100px 0px;
+}
+
+.heroContainer img:first-child {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    margin-top: -100px;
 }
 
 .bannerText {

@@ -1,0 +1,60 @@
+.editableText {
+    position: relative;
+}
+
+.editableText:hover .wrapper {    
+    border: 2px solid #FF7F32;
+}
+
+
+.editableText:focus .wrapper {    
+    border: 2px solid #FF7F32;
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+}
+
+.wrapper {
+    width: 104%;
+    height: 104%;
+    top: -2%;
+    left: -2%;
+    padding: 5px;
+    position: absolute;
+    
+    z-index: 5;
+}
+
+.wrapper:hover {
+    /*border: 2px solid #FF7F32;*/
+}
+
+.container {
+    outline: none;
+}
+
+.container:focus + .wrapper {
+    border: 2px solid #FF7F32;
+
+}
+
+/*
+.container::before {
+    width: 104%;
+    height: 104%;
+    top: -2%;
+    left: -2%;
+    padding: 5px;
+    position: absolute;
+    content: '';
+}
+
+.container:focus::before { 
+    border: 2px solid #FF7F32;
+}
+
+.container:hover::before {
+    border: 2px solid #FF7F32;
+}*/
