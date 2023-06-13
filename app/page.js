@@ -3,12 +3,13 @@
 import HeroBanner from '../component/HeroBanner/HeroBanner';
 import AboutUs from '../component/AboutUs/AboutUs';
 import PublishBar from '../component/PublishBar/PublishBar';
-import { Query } from 'react-contentful';
+import { useContentful } from 'react-contentful';
 import { createClient } from 'contentful-management'
 //import { Draggable } from "react-drag-reorder";
 
 import React, { useContext, useState } from 'react';
 import { EditableZone } from '../modules/EditableModule/EditableZone';
+import EditableComponent from '../modules/EditableModule/EditableComponent/EditableComponent';
 
 export default function Page({ props }) {
 
@@ -20,22 +21,12 @@ export default function Page({ props }) {
     }
   );
 
-  const toggleData = () => {
-    //editableZoneContext.setEditable(!demoContext.isEditable);
-  }
-
-  const getChangedPos = async (currentPosition, newPosition) => {
-    contentfulClient.getSpace('7or0qllst114').then((space) => {
-      // This API call will request an environment with the specified ID
-      space.getEnvironment('master').then((environment) => {
-        environment.getEntry(pageKey).then((entry) => {
-          console.log(entry);
-        })
-      })
-    });
-  }
+  const { data, error, fetched, loading } = useContentful({
+    id: pageKey
+  });
 
   const onAboutUsChanged = async (key, data) => {
+    /*
     contentfulClient.getSpace('7or0qllst114').then((space) => {
       // This API call will request an environment with the specified ID
       space.getEnvironment('master').then((environment) => {
@@ -48,67 +39,50 @@ export default function Page({ props }) {
 
         })
       })
+    })*/
+  }
+
+
+
+  const publishKey = async (key, data) => {
+    contentfulClient.getSpace('7or0qllst114').then((space) => {
+      space.getEnvironment('master').then((environment) => {
+        environment.getEntry(key).then((entry) => {
+          data.update().then((e) => {
+            e.publish().then((s) => {});
+          });
+
+        })
+      })
     })
   }
 
-  return (
-    <EditableZone isContentEditable={true}>
-      <Query
-        contentType="Home Page"
-        id={pageKey}>
-          {({data, error, fetched, loading}) => {
-            if (loading || !fetched) {
-              return <p>Loading...</p>;
-            }
-
-            if (error) {
-              console.error(error);
-              return <p>Error</p>;
-            }
-
-            if (!data) {
-              return <p>Page does not exist.</p>;
-            }
-
-            console.log(data)
-
-            return (
-              <div>        
-                  <HeroBanner isContentEditable={false} headline={data.fields.headline} buttonText={data.fields.subtitle} ></HeroBanner>
-                  {
-                    /*editableZoneContext.isEditable ? 
-                    (
-                      <Draggable  onPosChange={getChangedPos}>
-                        {
-                          data.fields.components.map((c, index) => {
-                            if(c.sys.contentType.sys.id == 'aboutUsComponent'){
-                              return <AboutUs isOddStyle={index % 2} contentChanged={onAboutUsChanged} key={c.sys.id} contentId={c.sys.id} title={c.fields.title} aboutUs={c.fields.aboutUs} ></AboutUs>
-                            }
-                          })
-                        }
-                      </Draggable>
-                    ) :*/
-                    (
-                      <>
-                        {
-                          data.fields.components.map((c, index) => {
-                            if(c.sys.contentType.sys.id == 'aboutUsComponent'){
-                              return <AboutUs isOddStyle={index % 2} contentChanged={onAboutUsChanged} key={c.sys.id} contentId={c.sys.id} title={c.fields.title} aboutUs={c.fields.aboutUs} ></AboutUs>
-                            } 
-                            else if(c.sys.contentType.sys.id == 'researchComponent'){
-                              
-                            }
-                          })
-                        }
-                      </>
-                    )
+  if(data) {
+    console.log(data);
+    return (
+      <EditableZone isContentEditable={true} publishKey={publishKey} initialData={{ key: pageKey, data: data}}>
+        <div>   
+            <EditableComponent >
+              <HeroBanner data={data.fields} headlineFunction={(d) => d.headline} buttonTextFunction={(d) => d.subtitle} ></HeroBanner>
+            </EditableComponent>
+              {
+                data.fields.components.map((c, index) => {
+                  if(c.sys.contentType.sys.id == 'aboutUsComponent'){
+                    return <AboutUs isOddStyle={index % 2} contentChanged={onAboutUsChanged} key={c.sys.id} contentId={c.sys.id} title={c.fields.title} aboutUs={c.fields.aboutUs} ></AboutUs>
+                  } 
+                  else if(c.sys.contentType.sys.id == 'researchComponent'){
+                    
                   }
-
-                  <PublishBar></PublishBar>
-              </div>
-            );
-            }}        
-      </Query>
-    </EditableZone>
-  );
+                })
+              }
+            <PublishBar></PublishBar>
+        </div>      
+      </EditableZone>
+    )
+  }
+  else
+  {
+    return (<>No Data</>)
+  }
+            
   }

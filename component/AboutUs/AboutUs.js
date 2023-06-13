@@ -11,9 +11,6 @@ function AboutUs({ isOddStyle, contentChanged, contentId, title, aboutUs, isCont
         if(contentName == "aboutUs")
             aboutUs = text;
 
-        console.log(title);
-        console.log(text);
-
         if(contentChanged)
             contentChanged(contentId, {
                 title: title,

@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react"
 import styles from "./EditableImage.module.css"
 import { EditableZoneContext } from '../EditableZone';
 
-function EditableImage({ isContentEditable, src, width, height, uploadImageLocation }){
+function EditableImage({ isContentEditable, src, width, height, uploadImageLocation, isPriorityImage = false }){
 
     const editableZoneContext = useContext(EditableZoneContext);
 
@@ -21,12 +21,10 @@ function EditableImage({ isContentEditable, src, width, height, uploadImageLocat
         :
         styles.middle
 
-    console.log(uploadTextLocationStyle);
-
     return (
         editableZoneContext.isEditable ?
         <>
-            <Image alt="Team Picture" className={styles.aboutUsImage} src={imageSrc} width={width} height={height}></Image>            
+            <Image alt="Team Picture" className={styles.aboutUsImage} src={imageSrc} width={width} height={height} priority={isPriorityImage} ></Image>            
             <div className={styles.imageOverlay}>
                 <div className={`${styles.imageOverlayText} ${uploadTextLocationStyle}`}>Upload New Image</div>
             </div>
@@ -34,7 +32,7 @@ function EditableImage({ isContentEditable, src, width, height, uploadImageLocat
         </>
         :        
         <>
-            <Image alt="Team Picture" className={styles.aboutUsImage} src={src} width={width} height={height}></Image>
+            <Image alt="Team Picture" className={styles.aboutUsImage} src={src} width={width} height={height} priority={isPriorityImage}></Image>
         </>
     )
 }
