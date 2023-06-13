@@ -57,13 +57,15 @@ export default function Page({ props }) {
     })
   }
 
+  var initialData = {};
+  initialData[pageKey] = data;
+
   if(data) {
-    console.log(data);
     return (
-      <EditableZone isContentEditable={true} publishKey={publishKey} initialData={{ key: pageKey, data: data}}>
+      <EditableZone isContentEditable={true} publishKey={publishKey} initialData={initialData}>
         <div>   
             <EditableComponent >
-              <HeroBanner data={data.fields} headlineFunction={(d) => d.headline} buttonTextFunction={(d) => d.subtitle} ></HeroBanner>
+              <HeroBanner data={data.fields} headlineFunction={(d) => d?.fields?.headline} buttonTextFunction={(d) => d?.fields?.subtitle} ></HeroBanner>
             </EditableComponent>
               {
                 data.fields.components.map((c, index) => {

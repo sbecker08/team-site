@@ -5,11 +5,22 @@ import styles from './EditableText.module.css'
 
 function  EditableText({ onTextChange, text, contentName }){
     
+    const pageKey = '7hy38EXg1i0GeLhelY0IHT'
+
     const editableZoneContext = useContext(EditableZoneContext);
 
     const handleBlur = (e) => {
+        console.log(e);
+        var data = editableZoneContext.getEntryByKey(pageKey);
+        console.log(data);
+        data.fields.headline = e.target.textContent;
+        console.log(data);
+        editableZoneContext.updateContentEntry(pageKey, data)
+        console.log(data);
         onTextChange ? onTextChange(contentName, e.target.textContent) : true;
     };
+
+    console.log('render')
 
     return (
         isEditable

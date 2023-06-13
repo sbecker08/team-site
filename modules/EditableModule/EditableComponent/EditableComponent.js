@@ -3,12 +3,11 @@ import { EditableZoneContext } from '../EditableZone';
 
 function EditableComponent({ children }) {
 
+    const pageKey = '7hy38EXg1i0GeLhelY0IHT'
+
     const editableZoneContext = useContext(EditableZoneContext);
 
-    var data = children.props.data ?? {
-        headline: 'My headline',
-        subtitle: 'My subtitle'        
-    }
+    var data = editableZoneContext.getEntryByKey(pageKey) ?? {};
 
     return (      
         <>  
